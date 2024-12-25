@@ -90,15 +90,15 @@ async def handle_message(client, message: Message):
     is_member = await is_user_member(client, user_id)
 
     if not is_member:
-        join_button = InlineKeyboardButton("ᴊᴏɪɴ ❤️🚀", url="https://t.me/jetmirror")
+        join_button = InlineKeyboardButton("ᴊᴏɪɴ ʜᴇʀᴇ", url="https://t.me/+2yCN3VP_YIU4MzE1")
         reply_markup = InlineKeyboardMarkup([[join_button]])
         await message.reply_text("ʏᴏᴜ ᴍᴜsᴛ ᴊᴏɪɴ ᴍʏ ᴄʜᴀɴɴᴇʟ ᴛᴏ ᴜsᴇ ᴍᴇ.", reply_markup=reply_markup)
         return
 
     valid_domains = [
-    'terabox.com', 'nephobox.com', '4funbox.com', 'mirrobox.com', 
-    'momerybox.com', 'teraboxapp.com', '1024tera.com', 
-    'terabox.app', 'gibibox.com', 'goaibox.com', 'terasharelink.com', 'teraboxlink.com', 'terafileshare.com'
+        'terabox.com', 'nephobox.com', '4funbox.com', 'mirrobox.com', 
+        'momerybox.com', 'teraboxapp.com', '1024tera.com', 
+        'terabox.app', 'gibibox.com', 'goaibox.com', 'terasharelink.com', 'teraboxlink.com'
     ]
 
     terabox_link = message.text.strip()
@@ -107,15 +107,20 @@ async def handle_message(client, message: Message):
         await message.reply_text("ᴘʟᴇᴀsᴇ sᴇɴᴅ ᴀ ᴠᴀʟɪᴅ ᴛᴇʀᴀʙᴏx ʟɪɴᴋ.")
         return
 
-    reply_msg = await message.reply_text("sᴇɴᴅɪɴɢ ʏᴏᴜ ᴛʜᴇ ᴍᴇᴅɪᴀ...🤤")
-
     try:
-        file_path, thumbnail_path, video_title = await download_video(terabox_link, reply_msg, user_mention, user_id)
-        await upload_video(client, file_path, thumbnail_path, video_title, reply_msg, dump_id, user_mention, user_id, message)
+        # Create the watch link
+        watch_link = f"https://opabhik.serv00.net/Watch.php?url={terabox_link}"
+        reply_markup = InlineKeyboardMarkup([
+            [InlineKeyboardButton("ᴄʟɪᴄᴋ ʜᴇʀᴇ ᴛᴏ ᴡᴀᴛᴄʜ ᴛʜᴇ ᴠɪᴅᴇᴏ", url=watch_link)]
+        ])
+        await message.reply_text(
+            f"ʜᴇʀᴇ ɪꜱ ʏᴏᴜʀ ᴠɪᴅᴇᴏ ʟɪɴᴋ, {user_mention}.",
+            reply_markup=reply_markup
+        )
     except Exception as e:
         logging.error(f"Error handling message: {e}")
-        await reply_msg.edit_text("Api has given a Broken Download Link. Dont Contact the Owner for this Issue.")
-
+        
 if __name__ == "__main__":
     keep_alive()
     app.run()
+        await message.reply_text("ꜱᴏʀʀʏ, ᴀɴ ᴇʀʀᴏʀ ᴏᴄᴄᴜʀʀᴇᴅ. ᴘʟᴇᴀꜱᴇ ᴛʀʏ ᴀɢᴀɪɴ.")
